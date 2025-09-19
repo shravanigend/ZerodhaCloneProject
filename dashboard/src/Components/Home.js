@@ -5,8 +5,8 @@ import TopBar from "./TopBar.js";
 const Home=()=>{
     return(
         <>
-        <DashBoard/>
         <TopBar/>
+        <DashBoard/>
         </>
     );
 }

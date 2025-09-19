@@ -18,9 +18,9 @@ const Menu = () => {
   const activeMenuClass = "menu selected";
 
   return (
-    <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
-      <div className="menus">
+    <div className="menu-container ">
+      <img src="./media/logo.png" style={{ width: "30px" }} />
+      <div className="menus pt-4">
         <ul>
           <li>
             <Link
@@ -69,7 +69,7 @@ const Menu = () => {
           <li>
             <Link
               style={{ textDecoration: "none" }}
-              to="funds"
+              to="/funds"
               onClick={() => handleMenuClick(4)}
             >
               <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>
@@ -90,8 +90,8 @@ const Menu = () => {
           </li>
         </ul>
         <hr />
-        <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
+        <div className="profile text-center  pt-0" onClick={handleProfileClick}>
+          <div className="avatar pt-0">S</div>
           <p className="username">USERID</p>
         </div>
       </div>
