@@ -8,24 +8,26 @@ import "./BAW.css";
 
 
 const BuyActionWindow = ({ uid }) => {
+  const { closeSellWindow } = useContext(GeneralContext);
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
-  const {closeBuyWindow}=useContext(GeneralContext);
 
-  const handleBuyClick = () => {
-    axios.post("http://localhost:3002/newOrder", {
+
+
+    const handleSellClick = () => {
+    axios.post("http://localhost:3002/sellOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
-      mode: "BUY",
+      mode: "SELL",
     });
 
-    closeBuyWindow();
+    closeSellWindow();
   };
-
-  const handleCancelClick = () => {
-   closeBuyWindow();
+ const handleCancelClick = () => {
+   closeSellWindow();
   };
+ 
 
   return (
     <div className="container" id="buy-window" draggable="true">
@@ -58,10 +60,10 @@ const BuyActionWindow = ({ uid }) => {
       <div className="buttons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>
-            Buy
+          <Link className="btn btn-blue" onClick={handleSellClick}>
+            Sell
           </Link>
-          <Link className="btn btn-grey" onClick={handleCancelClick}>
+          <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
             Cancel
           </Link>
         </div>

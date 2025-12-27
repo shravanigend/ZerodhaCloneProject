@@ -1,22 +1,42 @@
-import React, { useState } from "react";
-
+import React, { useState,useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
+  const [username, setUsername] = useState("");
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-
+  
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
   };
 
-  const handleProfileClick = (index) => {
+  const handleProfileClick = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
+  
 
+useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:3002/me",
+          { withCredentials: true }
+        );
+
+        if (data.success) {
+          setUsername(data.username);
+        }
+      } catch (err) {
+        console.log("Not authenticated");
+      }
+    };
+
+    fetchUser();
+  }, []);
   return (
     <div className="menu-container ">
       <img src="./media/logo.png" style={{ width: "30px" }} />
@@ -77,22 +97,12 @@ const Menu = () => {
               </p>
             </Link>
           </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none" }}
-              to="/apps"
-              onClick={() => handleMenuClick(6)}
-            >
-              <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>
-                Apps
-              </p>
-            </Link>
-          </li>
+         
         </ul>
         <hr />
         <div className="profile text-center  pt-0" onClick={handleProfileClick}>
-          <div className="avatar pt-0">S</div>
-          <p className="username">USERID</p>
+          <div className="avatar pt-0">{username ? username[0].toUpperCase() : "?"}</div>
+          <p className="username">{username || "USER"}</p>
         </div>
       </div>
     </div>
