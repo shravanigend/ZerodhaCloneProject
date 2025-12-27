@@ -1,13 +1,22 @@
 require("dotenv").config();
 const express=require("express");
 const mongoose=require("mongoose");
+//const bodyParser=require("body-parser");
+const cors=require("cors");
 const {holdingModel}=require("./model/holdinModel");
 const {PositionModel}=require("./model/PositionModel");
+const {OrderModel}=require("./model/OrderModel");
+//const {userSchema} =require("./model/UserModel");
+const cookieParser=require("cookie-parser");
+const authRoute = require("./Route/AuthRoute");
+const { userVerification } = require("./Middleware/AuthMiddleware"); 
 
 const PORT=process.env.PORT || 3002;
 const uri=process.env.MONGO_URL;
 
 const app=express();
+// app.use(cors());
+// app.use(bodyParser.json());
 
 // app.get("/addHolding",async(req,res)=>{
 //     let tempHolding=[
@@ -172,6 +181,26 @@ const app=express();
 // });
 
 
+app.use(
+  cors({
+    origin: ["http://localhost:3000","http://localhost:3001"],
+    //methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+app.use(cookieParser());
+
+app.use(express.json());
+
+app.use("/", authRoute);
+
+
+
+app.post("/test", (req, res) => {
+  console.log("Test route hit!", req.body);
+  res.json({ success: true });
+});
+
 app.get("/allHolding",async(req,res)=>{
     let allHolding=await holdingModel.find({});
     res.json(allHolding);
@@ -180,8 +209,45 @@ app.get("/allPos",async(req,res)=>{
     let allPos=await PositionModel.find({});
     res.json(allPos);
 });
+app.get("/allOrder",async(req,res)=>{
+    let allOrder=await OrderModel.find({});
+    res.json(allOrder);
+});
+
+app.post("/newOrder",(req,res)=>{
+   let newOrder=new OrderModel({
+    name: req.body.name,
+    qty:  req.body.qty,
+    price:  req.body.price,
+    mode:  req.body.mode,
+   });
+   newOrder.save();
+   res.send("order saved");
+});
+app.post("/sellOrder",(req,res)=>{
+   let newOrder=new OrderModel({
+    name: req.body.name,
+    qty:  req.body.qty,
+    price:  req.body.price,
+    mode:  req.body.mode,
+   });
+   newOrder.save();
+   res.send("order sell");
+});
+
+app.get('/dashboard', userVerification, (req, res) => {
+  // userVerification sets req.user if token is valid
+  return res.json({
+    success: true,
+    user: req.user, // username or email
+  });
+});
+
+
+
 app.listen(PORT,()=>{
     console.log("zerodha App started");
-    mongoose.connect(uri);
-    console.log("DB started");
+    mongoose.connect(uri).then(() => console.log("✅ MongoDB connected"))
+    .catch(err => console.error("❌ MongoDB connection error:", err));
+    console.log('DB started' ,PORT);
 });
