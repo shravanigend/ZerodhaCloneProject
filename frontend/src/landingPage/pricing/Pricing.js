@@ -1,7 +1,7 @@
 import React from "react";
 import HeroSection from "./HeroSection";
 import Brokerage from "./Brokrage";
-import OpenAcc from "../OpenAccount";
+import ChargesE from "./ChargesE";
 
 
 function Pricing(){
@@ -9,7 +9,7 @@ function Pricing(){
      <>
      <HeroSection/>
      <Brokerage/>
-     <OpenAcc/>
+     <ChargesE/>
      </>
     );
 }

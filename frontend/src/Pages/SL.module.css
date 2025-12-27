@@ -1,0 +1,181 @@
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Form container */
+.form_container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* center everything horizontally */
+  gap: 15px;
+}
+
+/* Center label text */
+.form_container label {
+  text-align: center;
+  width: 100%;          /* optional, ensures label spans input width */
+  font-size: 1rem;
+  color: #656262;
+}
+
+/* Center input text and control width */
+.form_container input {
+  width: 80%;            /* or max-width: 300px */
+  text-align: center;    /* input text centered */
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+  border-radius: 5px;
+}
+
+/* Center the button */
+.form_container button {
+  width: 50%;
+  align-self: center;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  background-color: rgb(0, 255, 0);
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+.form_container {
+  position: relative;
+  width: 400px;
+  max-width: 90%;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideDown 0.3s ease;
+}
+.form_container input:focus {
+  border-color: rgb(0, 255, 0);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+}
+
+.form_container button:hover {
+  background-color: rgb(0, 200, 0);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Close button */
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+.closeBtn:hover {
+  color: #f00;
+}
+
+/* Headline */
+.form_container h2 {
+  text-align: center;
+  color: #0a74da;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Input fields */
+.form_container input {
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form_container input:focus {
+  border-color: #0a74da;
+  box-shadow: 0 0 8px rgba(10, 116, 218, 0.3);
+}
+
+/* Submit button */
+.form_container button {
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #0a74da;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.form_container button:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+/* Links */
+.form_container span {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+.form_container span a {
+  text-decoration: none;
+  color: #0a74da;
+  font-weight: 500;
+  margin-left: 5px;
+  transition: color 0.2s ease;
+}
+.form_container span a:hover {
+  color: #005bb5;
+}
+
+/* Responsive */
+@media only screen and (max-width: 500px) {
+  .form_container {
+    padding: 30px 20px;
+  }
+  .form_container h2 {
+    font-size: 1.5rem;
+  }
+  .form_container button {
+    font-size: 1rem;
+  }
+}
+

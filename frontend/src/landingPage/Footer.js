@@ -6,8 +6,8 @@ function Footer() {
         <div className="container p-5 mt-5 pb-0 pt-0">
             <div className="row p-5 pt-0 mt-3 pb-0">
                 <div className="col">
-                    <img src="media/logo.svg" style={{width:"50%"}}  className="mb-4"/>
-                    <p style={{fontSize:"0.75rem"}} className="text-muted">© 2010 - 2025, Zerodha Broking Ltd. All rights reserved.</p>
+                    <img src="media/logo.svg" style={{width:"70%"}}  className="mb-4"/>
+                    <p style={{fontSize:"0.8rem",fontWeight:"400"}} className="text-muted">© 2010 - 2025, Zerodha Broking Ltd. All rights reserved.</p>
                     <div className="mb-3"><span style={{marginRight:"15px"}} ><i class="fa-brands fa-x-twitter"></i></span>
                     <span style={{marginRight:"15px"}}><i class="fa-brands fa-instagram"></i></span>
                     <span style={{marginRight:"15px"}}><i class="fa-brands fa-facebook"></i></span>
